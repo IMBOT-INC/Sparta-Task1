@@ -14,6 +14,13 @@ AMyActor::AMyActor()
 void AMyActor::BeginPlay()
 {
 	Super::BeginPlay();
+	SetActorLocation(FVector(0,0,50	));
+	for (int i = 0; i < 10; i++) {
+		Move();
+	}
+	for (int i = 0; i < 10; i++) {
+		Turn();
+	}
 }
 
 void AMyActor::Move()
@@ -45,11 +52,8 @@ void AMyActor::Turn()
 			FMath::FRandRange(-180.f, 180.f),
 			0.f
 			);
-	
 	AddActorWorldRotation(DeltaRotation);
-
 	FRotator CurrentRotation = GetActorRotation();
-
 	if (GEngine) {
 		GEngine->AddOnScreenDebugMessage(
 			-1,
